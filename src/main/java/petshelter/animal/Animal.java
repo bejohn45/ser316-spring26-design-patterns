@@ -2,7 +2,13 @@ package petshelter.animal;
 
 import petshelter.animal.state.AnimalState;
 import petshelter.animal.state.IntakeState;
-import petshelter.adopter.Adopter;
+
+import petshelter.animal.HealthStatus;
+import petshelter.animal.IntakeType;
+import petshelter.animal.Size;
+import petshelter.animal.Temperament;
+
+import petshelter.adoption.Adopter;
 
 /**
  * Represents an animal in the pet shelter

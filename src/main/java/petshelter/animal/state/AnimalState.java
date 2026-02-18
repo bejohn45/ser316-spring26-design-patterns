@@ -13,11 +13,10 @@ public interface AnimalState
      */
     String getStateName();
 
-
-    void setState(Animal animal, AnimalState newState)
-    {
-        //
-    }
+    /**
+     * Set the current state of the animal to a new state
+     */
+    void setState(Animal animal, AnimalState newState);
 
     /**
      * Process the intake of the animal

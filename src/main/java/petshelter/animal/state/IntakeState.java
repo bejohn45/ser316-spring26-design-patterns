@@ -1,7 +1,7 @@
 package petshelter.animal.state;
 
 import petshelter.animal.Animal;
-import petshelter.adopter.Adopter;
+import petshelter.adoption.Adopter;
 
 /**
  * State class for the intake process of an animal at the pet shelter
