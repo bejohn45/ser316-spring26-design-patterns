@@ -1,5 +1,6 @@
 package petshelter.adoption;
 
+// imports
 import petshelter.animal.Species;
 import petshelter.animal.Size;
 import petshelter.animal.Temperament;

@@ -1,5 +1,8 @@
 package petshelter;
 
+//imports
+import petshelter.shelter.ShelterSimulation;
+
 /**
  * Main class to run the pet shelter simulation
  */

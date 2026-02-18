@@ -1,7 +1,10 @@
 package petshelter.animal.state;
 
+//imports
 import petshelter.animal.Animal;
 import petshelter.adoption.Adopter;
+import petshelter.action.MedicalAction;
+import petshelter.action.CareAction;
 
 /**
  * State interface for Animal lifecycle states (e.g., intake, available, pending, adopted)

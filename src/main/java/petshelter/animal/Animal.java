@@ -10,6 +10,9 @@ import petshelter.animal.Temperament;
 
 import petshelter.adoption.Adopter;
 
+import petshelter.action.MedicalAction;
+import petshelter.action.CareAction;
+
 /**
  * Represents an animal in the pet shelter
  */
