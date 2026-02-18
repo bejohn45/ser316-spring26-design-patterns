@@ -188,4 +188,12 @@ public class Animal
     {
         return state.getStateName();
     }
+
+    /**
+     * Setter to change the lifecycle state of the animal
+     */
+    public void setState(AnimalState state) 
+    {
+        this.state = state;
+    }
 }
