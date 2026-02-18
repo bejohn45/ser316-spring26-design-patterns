@@ -1,7 +1,5 @@
 package petshelter.animal;
 
-import petshelter.animal.MedicalAction;
-import petshelter.animal.CareAction;
 import petshelter.animal.state.AnimalState;
 import petshelter.animal.state.IntakeState;
 import petshelter.adopter.Adopter;
@@ -11,11 +9,19 @@ import petshelter.adopter.Adopter;
  */
 public class Animal 
 {
-    private int id;                         // unique id for each animal
-    private Species species;                // enum for species (e.g., DOG, CAT, etc.)
-    private int age;                        // age of animal
-    private HealthStatus healthStatus;      // enum for health status (e.g., HEALTHY, SICK)
-    private int recoveryDaysRemaining;      // number of days remaining for recovery if the animal is sick or injured
+    // basic attributes for an animal
+    private final int id;                         // unique id for each animal
+    private final Species species;                // enum for species (e.g., DOG, CAT, etc.)
+    private final int age;                        // age of animal
+    private HealthStatus healthStatus;            // enum for health status (e.g., HEALTHY, SICK)
+
+    // intake attributes
+    private final IntakeType intakeType;              // enum for type of intake (e.g., STRAY, SURRENDER, TRANSFER)
+
+    // additional attributes for adoption matching
+    private final Size size;                            // size of the animal (e.g., small, medium, large)
+    private final Temperament temperament;              // temperament of the animal (e.g., FRIENDLY, SHY, AGGRESSIVE, ANXIOUS, ENERGETIC)
+    private int recoveryDaysRemaining;                  // number of days remaining for recovery if the animal is sick or injured
 
     // state pattern for animal status
     private AnimalState state;            // current state of the animal (e.g., intake, available, adopted, etc.)
@@ -23,14 +29,17 @@ public class Animal
     /**
      * Constructor for Animal
      */
-    public Animal(int id, Species species, int age, HealthStatus healthStatus) 
+    public Animal(int id, Species species, int age, HealthStatus healthStatus, IntakeType intakeType, Size size, Temperament temperament) 
     {
         this.id = id;
         this.species = species;
         this.age = age;
         this.healthStatus = healthStatus;
+        this.intakeType = intakeType;
+        this.size = size;
+        this.temperament = temperament;
         this.recoveryDaysRemaining = 0;
-        // initialize as intake state when created
+        // initialize as intake state when animal created
         this.state = new IntakeState();
     }
 
@@ -75,6 +84,40 @@ public class Animal
     }
 
     /**
+     * Start the recovery process for the animal if it is sick or injured
+     * Set the number of recovery days remaining
+     */
+    public void startRecovery(int days)
+    {
+        // set recovery days remaining
+         this.recoveryDaysRemaining = days;
+
+        // check if animal is sick or injured
+        if ((healthStatus == HealthStatus.SICK) || (healthStatus == HealthStatus.INJURED)) 
+        {
+            healthStatus = HealthStatus.RECOVERING;
+        }
+    }
+
+    /**
+     * Tick a day for the recovery process
+     * Update the health status of the animal if recovery is complete
+     */
+    public void tickRecoveryDay()
+    {
+        // check if recovery is in progress
+        if (recoveryDaysRemaining > 0) 
+        {
+            recoveryDaysRemaining--;
+            // check if recovery is complete
+            if ((recoveryDaysRemaining == 0) && (healthStatus == HealthStatus.RECOVERING)) 
+            {
+                healthStatus = HealthStatus.HEALTHY;
+            }
+        }
+    }
+
+    /**
      * Getter for id
      */
     public int getId() 
@@ -107,11 +150,42 @@ public class Animal
     }
 
     /**
+     * Getter for intake type
+     */
+    public IntakeType getIntakeType() 
+    {
+        return intakeType;
+    }
+
+    /**
+     * Getter for size
+     */
+    public Size getSize()
+    {
+        return size;
+    }
+
+    /**
+     * Getter for temperament
+     */
+    public Temperament getTemperament()
+    {
+        return temperament;
+    }
+
+    /**
+     * Getter for recovery days remaining
+     */
+    public int getRecoveryDaysRemaining() 
+    {
+        return recoveryDaysRemaining;
+    }
+
+    /**
      * Getter for state
      */
     public String getState()
     {
         return state.getStateName();
     }
-
 }
