@@ -13,6 +13,9 @@ import petshelter.animal.IntakeType;
  */
 public class IntakeState implements AnimalState
 {
+    private final int sickRecoveryDays = 2;         // days it takes for sick animal to recover
+    private final int injuredRecoveryDays = 3;      // days it takes for injured animal to recover
+
     /**
      * Get the name of the current state of the animal
      */
@@ -23,22 +26,20 @@ public class IntakeState implements AnimalState
     }
 
     /**
-     * Set the current state of the animal to a new state
-     */
-    @Override
-    public void setState(Animal animal, AnimalState newState)
-    {
-        animal.setState(newState);
-    }
-
-    /**
      * Process the intake of the animal
      */
     @Override
     public void processIntake(Animal animal)
     {
-        // set animal state to available
-        //setState(animal, new AvailableState());
+        // check animal health status
+        if (animal.getHealthStatus() == petshelter.animal.HealthStatus.SICK) 
+        {
+            animal.setRecoveryDaysRemaining(sickRecoveryDays);
+        }
+        else if (animal.getHealthStatus() == petshelter.animal.HealthStatus.INJURED) 
+        {
+            animal.setRecoveryDaysRemaining(injuredRecoveryDays);
+        }
         System.out.println("Processed intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
     }
 

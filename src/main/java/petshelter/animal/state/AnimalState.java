@@ -17,11 +17,6 @@ public interface AnimalState
     String getStateName();
 
     /**
-     * Set the current state of the animal to a new state
-     */
-    void setState(Animal animal, AnimalState newState);
-
-    /**
      * Process the intake of the animal
      */
     void processIntake(Animal animal);

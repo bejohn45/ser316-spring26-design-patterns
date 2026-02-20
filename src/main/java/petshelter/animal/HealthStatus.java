@@ -7,6 +7,5 @@ public enum HealthStatus
 {
     HEALTHY,
     SICK,
-    INJURED,
-    RECOVERING
+    INJURED
 }
