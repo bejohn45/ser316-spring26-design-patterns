@@ -31,6 +31,7 @@ public class Animal
     private final Size size;                            // size of the animal (e.g., small, medium, large)
     private final Temperament temperament;              // temperament of the animal (e.g., FRIENDLY, SHY, AGGRESSIVE, ANXIOUS, ENERGETIC)
     private int recoveryDaysRemaining;                  // number of days remaining for recovery if the animal is sick or injured
+    private Adopter pendingAdopter;                     // adopter who wants to adopt the animal
 
     // state pattern for animal status
     private AnimalState state;            // current state of the animal (e.g., intake, available, adopted, etc.)
@@ -48,6 +49,7 @@ public class Animal
         this.size = size;
         this.temperament = temperament;
         this.recoveryDaysRemaining = 0;
+        this.pendingAdopter = null;
         // initialize as intake state when animal created
         this.state = new IntakeState();
     }
@@ -191,6 +193,14 @@ public class Animal
     }
 
     /**
+     * Getter for pending adopter
+     */
+    public Adopter getPendingAdopter()
+    {
+        return pendingAdopter;
+    }
+
+    /**
      * Getter for state
      */
     public String getState()
@@ -204,5 +214,21 @@ public class Animal
     public void setState(AnimalState state) 
     {
         this.state = state;
+    }
+
+    /**
+     * Setter for pending adopter
+     */
+    public void setPendingAdopter(Adopter adopter)
+    {
+        this.pendingAdopter = adopter;
+    }
+
+    /**
+     * Remove pending adopter if adoption fails
+     */
+    public void removePendingAdopter()
+    {
+        this.pendingAdopter = null;
     }
 }
