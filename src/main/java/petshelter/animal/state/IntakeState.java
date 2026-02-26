@@ -31,6 +31,14 @@ public class IntakeState implements AnimalState
     @Override
     public void processIntake(Animal animal)
     {
+        // check if animal null
+        if (animal == null) 
+        {
+            throw new IllegalArgumentException("Animal cannot be null for intake process");
+        }
+        // do intake exam
+        animal.addMedicalAction(MedicalAction.INTAKE_EXAM);
+        System.out.println("Performed intake exam for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
         // check animal health status
         if (animal.getHealthStatus() == petshelter.animal.HealthStatus.SICK) 
         {

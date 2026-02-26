@@ -13,6 +13,9 @@ import petshelter.adoption.Adopter;
 import petshelter.action.MedicalAction;
 import petshelter.action.CareAction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents an animal in the pet shelter
  */
@@ -35,6 +38,8 @@ public class Animal
 
     // state pattern for animal status
     private AnimalState state;            // current state of the animal (e.g., intake, available, adopted, etc.)
+    private List<CareAction> careHistory;           // history of care actions done on animal
+    private List<MedicalAction> medicalHistory;    // history of medical actions done on animal
 
     /**
      * Constructor for Animal
@@ -52,6 +57,10 @@ public class Animal
         this.pendingAdopter = null;
         // initialize as intake state when animal created
         this.state = new IntakeState();
+        this.careHistory = new ArrayList<>();
+        this.medicalHistory = new ArrayList<>();
+        // do intake exam when animal added
+        this.state.performMedical(this, MedicalAction.INTAKE_EXAM);
     }
 
     /**
@@ -209,6 +218,22 @@ public class Animal
     }
 
     /**
+     * Getter for care history
+     */
+    public List<CareAction> getCareHistory() 
+    {
+        return careHistory;
+    }
+
+    /**
+     * Getter for medical history
+     */
+    public List<MedicalAction> getMedicalHistory() 
+    {
+        return medicalHistory;
+    }
+
+    /**
      * Setter to change the lifecycle state of the animal
      */
     public void setState(AnimalState state) 
@@ -230,5 +255,21 @@ public class Animal
     public void removePendingAdopter()
     {
         this.pendingAdopter = null;
+    }
+
+    /**
+     * Add care action to care history list
+     */
+    public void addCareAction(CareAction careAction)
+    {
+        this.careHistory.add(careAction);
+    }
+
+    /**
+     * Add medical action to medical history list
+     */
+    public void addMedicalAction(MedicalAction medicalAction)
+    {
+        this.medicalHistory.add(medicalAction);
     }
 }
