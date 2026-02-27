@@ -61,6 +61,7 @@ public class Animal
         this.medicalHistory = new ArrayList<>();
         // do intake exam when animal added
         this.state.performMedical(this, MedicalAction.INTAKE_EXAM);
+        this.processIntake();
     }
 
     /**

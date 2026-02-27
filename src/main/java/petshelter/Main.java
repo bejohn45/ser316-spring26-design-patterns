@@ -12,7 +12,8 @@ public class Main
     {
         System.out.println("Deliverable B: Pet Shelter Simulation starting...");
         // create and run the shelter simulation
-        ShelterSimulation simulation = new ShelterSimulation();
+        ShelterSimulation simulation = new ShelterSimulation(7);
+        simulation.setUp();
         simulation.run();
     }
 }
