@@ -25,8 +25,8 @@ public class AvailableState implements AnimalState
     @Override
     public void processIntake(Animal animal)
     {
-        throw new IllegalStateException("Cannot process intake during available state for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        throw new IllegalStateException("Cannot process intake during available state for ID: " + animal.getId());
+    }  
 
     /**
      * Perform medical action on the animal (e.g., intake exam or vaccination)
@@ -45,7 +45,7 @@ public class AvailableState implements AnimalState
             throw new IllegalArgumentException("Cannot perform intake exam during available state for ID: " + animal.getId());
         }
         animal.addMedicalAction(medicalAction);
-        System.out.println("Performed " + medicalAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        System.out.println("Performed " + medicalAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }
 
     /**
@@ -60,7 +60,7 @@ public class AvailableState implements AnimalState
             throw new IllegalArgumentException("Care action cannot be null for ID: " + animal.getId());
         }
         animal.addCareAction(careAction);
-        System.out.println("Performed  " + careAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        System.out.println("Performed  " + careAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
 
     }
 
@@ -77,8 +77,8 @@ public class AvailableState implements AnimalState
         }
         // set pending adopter and set to pending state
         animal.setPendingAdopter(adopter);
-        System.out.println("Adoption requested by " + adopter.getName() + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
         animal.setState(new PendingState());
+        System.out.println("Adoption requested by " + adopter.getName() + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }
 
     /**                                                 
@@ -88,7 +88,7 @@ public class AvailableState implements AnimalState
     public void completeAdoption(Animal animal)
     {
         // cannot complete adoption during available state
-        System.out.println("Cannot complete adoption during available state for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        throw new IllegalStateException("Cannot complete adoption during available state for ID: " + animal.getId());
     }
 
 }

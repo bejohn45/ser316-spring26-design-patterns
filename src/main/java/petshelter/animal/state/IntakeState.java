@@ -34,11 +34,10 @@ public class IntakeState implements AnimalState
         // check if animal null
         if (animal == null) 
         {
-            throw new IllegalArgumentException("Animal cannot be null for intake process");
+            throw new IllegalArgumentException("Animal cannot be null for intake process for ID: " + animal.getId());
         }
         // do intake exam
-        animal.addMedicalAction(MedicalAction.INTAKE_EXAM);
-        System.out.println("Performed intake exam for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        animal.performMedical(MedicalAction.INTAKE_EXAM);
         // check animal health status
         if (animal.getHealthStatus() == petshelter.animal.HealthStatus.SICK) 
         {
@@ -48,7 +47,7 @@ public class IntakeState implements AnimalState
         {
             animal.setRecoveryDaysRemaining(injuredRecoveryDays);
         }
-        System.out.println("Processed intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        System.out.println("Processed intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }
 
     /**
@@ -57,7 +56,13 @@ public class IntakeState implements AnimalState
     @Override
     public void performMedical(Animal animal, MedicalAction medicalAction)
     {
-        System.out.println("Performed " + medicalAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        // check if medical action null
+        if (medicalAction == null) 
+        {
+            throw new IllegalArgumentException("Medical action cannot be null for ID: " + animal.getId());
+        }
+        animal.addMedicalAction(medicalAction);
+        System.out.println("Performed " + medicalAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }
 
     /**
@@ -66,7 +71,13 @@ public class IntakeState implements AnimalState
     @Override
     public void performCare(Animal animal, CareAction careAction)
     {
-        System.out.println("Performed  " + careAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        // check if care action null
+        if (careAction == null) 
+        {
+            throw new IllegalArgumentException("Care action cannot be null for ID: " + animal.getId());
+        }
+        animal.addCareAction(careAction);
+        System.out.println("Performed  " + careAction + " for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }
 
     /**
@@ -75,8 +86,13 @@ public class IntakeState implements AnimalState
     @Override
     public void requestAdoption(Animal animal, Adopter adopter)
     {
+        // check if adopter null
+        if (adopter == null)
+        {
+            throw new IllegalArgumentException("Adopter cannot be null for ID: " + animal.getId());
+        }
         // cannot request adoption during intake state
-        System.out.println("Cannot request adoption during intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        throw new IllegalStateException("Cannot request adoption during intake state for ID: " + animal.getId());
     }
 
     /**
@@ -86,6 +102,6 @@ public class IntakeState implements AnimalState
     public void completeAdoption(Animal animal)
     {
         // cannot complete adoption during intake state
-        System.out.println("Cannot complete adoption during intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies());
+        throw new IllegalStateException("Cannot complete adoption during intake state for ID: " + animal.getId());
     }
 }
