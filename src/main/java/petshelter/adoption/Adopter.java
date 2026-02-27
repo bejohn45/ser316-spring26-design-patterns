@@ -10,6 +10,7 @@ import petshelter.animal.Temperament;
  */
 public class Adopter 
 {
+    private String name;                         // name of the adopter
     private Species preferredSpecies;            // preferred species for adoption 
     private Size preferredSize;                  // preferred size of the pet (e.g., small, medium, large)
     private int preferredAgeMin;                 // minimum preferred age of the pet
@@ -19,18 +20,27 @@ public class Adopter
     /**
      * Constructor for Adopter
      */
-    public Adopter(Species preferredSpecies, Size preferredSize, int preferredAgeMin, int preferredAgeMax, Temperament preferredTemperament)
+    public Adopter(String name, Species preferredSpecies, Size preferredSize, int preferredAgeMin, int preferredAgeMax, Temperament preferredTemperament)
     {
         // verify that age inputs are valid
         if ((preferredAgeMin < 0) || (preferredAgeMax < 0) || (preferredAgeMin > preferredAgeMax)) 
         {
             throw new IllegalArgumentException("Invalid age range for adopter preferences");
         }
+        this.name = name;
         this.preferredSpecies = preferredSpecies;
         this.preferredSize = preferredSize;
         this.preferredAgeMin = preferredAgeMin;
         this.preferredAgeMax = preferredAgeMax;
         this.preferredTemperament = preferredTemperament;
+    }
+
+    /**
+     * Getter for adopter name
+     */
+    public String getName() 
+    {
+        return name;
     }
 
     /**

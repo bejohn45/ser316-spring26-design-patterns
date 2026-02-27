@@ -104,24 +104,30 @@ public class Animal
     }
 
     /**
-     * Start the recovery process for the animal if it is sick or injured
-     * Set the number of recovery days remaining
+     * Start the recovery process for the animal when animal becomes sick or injured
      */
     public void startRecovery(int days)
     {
-        // set recovery days remaining
-         this.recoveryDaysRemaining = days;
-
+        // check if days positive
+        if (days <= 0) 
+        {
+            throw new IllegalArgumentException("Recovery days must be positive for ID: " + id);
+        }
+        // check if animal is health
+        if (healthStatus == HealthStatus.HEALTHY) 
+        {
+            throw new IllegalStateException("Cannot start recovery for healthy animal with ID: " + id);
+        }
         // check if animal is sick or injured
         if ((healthStatus == HealthStatus.SICK) || (healthStatus == HealthStatus.INJURED)) 
         {
-            healthStatus = HealthStatus.RECOVERING;
+            // set recovery days remaining
+            this.recoveryDaysRemaining = days;
         }
     }
 
     /**
      * Tick a day for the recovery process
-     * Update the health status of the animal if recovery is complete
      */
     public void tickRecoveryDay()
     {
@@ -130,7 +136,7 @@ public class Animal
         {
             recoveryDaysRemaining--;
             // check if recovery is complete
-            if ((recoveryDaysRemaining == 0) && (healthStatus == HealthStatus.RECOVERING)) 
+            if (recoveryDaysRemaining == 0)
             {
                 healthStatus = HealthStatus.HEALTHY;
             }

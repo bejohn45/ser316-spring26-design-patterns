@@ -2,8 +2,9 @@ package petshelter.animal.state;
 
 //imports
 import petshelter.animal.Animal;
-import petshelter.animal.CareAction;
-import petshelter.animal.MedicalAction;
+import petshelter.action.CareAction;
+import petshelter.action.MedicalAction;
+import petshelter.adoption.Adopter;
 
 public class AvailableState implements AnimalState
 {

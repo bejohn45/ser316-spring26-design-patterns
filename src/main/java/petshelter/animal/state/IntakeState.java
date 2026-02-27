@@ -41,11 +41,11 @@ public class IntakeState implements AnimalState
         // check animal health status
         if (animal.getHealthStatus() == petshelter.animal.HealthStatus.SICK) 
         {
-            animal.setRecoveryDaysRemaining(sickRecoveryDays);
+            animal.startRecovery(sickRecoveryDays);
         }
         else if (animal.getHealthStatus() == petshelter.animal.HealthStatus.INJURED) 
         {
-            animal.setRecoveryDaysRemaining(injuredRecoveryDays);
+            animal.startRecovery(injuredRecoveryDays);
         }
         System.out.println("Processed intake for ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + getStateName());
     }

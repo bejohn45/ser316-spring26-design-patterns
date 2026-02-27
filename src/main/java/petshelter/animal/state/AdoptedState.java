@@ -1,4 +1,4 @@
-lackage petshelter.animal.state;
+package petshelter.animal.state;
 
 // imports
 import petshelter.animal.Animal;
