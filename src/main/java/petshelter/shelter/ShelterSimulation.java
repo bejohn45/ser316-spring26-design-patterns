@@ -5,6 +5,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 import petshelter.shelter.PetShelter;
+import petshelter.animal.Animal;
+import petshelter.animal.AnimalManager;
+import petshelter.animal.Size;
+import petshelter.animal.IntakeType;
+import petshelter.animal.state.IntakeState;
+import petshelter.animal.state.AvailableState;
+import petshelter.animal.state.PendingState;
+import petshelter.animal.state.AdoptedState;
+import petshelter.animal.HealthStatus;
+import petshelter.action.MedicalAction;
+
+
 
 
 /**
@@ -34,8 +46,65 @@ public class ShelterSimulation
         petShelter.setUpAnimals();
     }
 
+    /**
+     * Run shelter simulation for total cycles
+     */
     public void run() 
     {
-        System.out.println("Running shelter simulation...");
+        System.out.println("\n -------------------- Cycle " + cycle + " --------------------\n");
+        
+    }
+
+
+
+    /**
+     * Print daily summary of animal states in shelter
+     */
+    public void dailySummary()
+    {
+        int intake = 0;
+        int available = 0;
+        int pending = 0;
+        int adopted = 0;
+
+        // get list of animals and get counts of states
+        List<Animal> animals = petShelter.getAnimalManager().getAnimals();
+        for (Animal animal : animals)
+        {
+            switch (animal.getState())
+            {
+                case "INTAKE":
+                    intake++;
+                    break;
+                case "AVAILABLE":
+                    available++;
+                    break;
+                case "PENDING":
+                    pending++;
+                    break;
+                case "ADOPTED":
+                    adopted++;
+                    break;
+            }
+        }
+        // print summary
+        System.out.println("---------- Animals Daily Summary ----------");
+        System.out.println("\n Intake: " + intake);
+        System.out.println("\n Available: " + available);
+        System.out.println("\n Pending: " + pending);
+        System.out.println("\n Adopted: " + adopted);
+    }
+
+    /**
+     * Print list of animals in shelter
+     */
+    public void printAnimalsList()
+    {
+        List<Animal> animals = petShelter.getAnimalManager().getAnimals();
+        System.out.println("\n ---------- Animals List ----------");
+        for (Animal animal : animals)
+        {
+            System.out.println("\n ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + animal.getAge() + " - " + animal.getHealthStatus() + " - " + animal.getState());
+        }
     }
 }
