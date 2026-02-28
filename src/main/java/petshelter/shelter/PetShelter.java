@@ -9,7 +9,10 @@ import petshelter.animal.IntakeType;
 import petshelter.animal.Size;
 import petshelter.animal.Temperament;
 import petshelter.animal.HealthStatus;
+import petshelter.action.CareAction;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -57,7 +60,7 @@ public class PetShelter
             // check if no new animals
             if (count == 0)
             {
-                System.out.println("No new animals arrived today.");
+                System.out.println("No new animals arrived today.\n");
                 return;
             }
             // add new animals
@@ -82,5 +85,28 @@ public class PetShelter
                 animalManager.addAnimal(animal);
                 System.out.println("New animal arrived with ID: " + animal.getId() + " - " + animal.getSpecies() + " - " + animal.getAge() + " - " + animal.getHealthStatus());
             }
+            System.out.println("Total new animals arrived today: " + count + "\n");
+        }
+
+        /**
+         * Perform daily care for all animals in pet shelter
+         */
+        public void performDailyCare()
+        {
+            List<Animal> animals = animalManager.getAnimals();
+            // do care for each animal
+            for (Animal animal : animals)
+            {
+                // check if adopted
+                if (animal.getState().equals("ADOPTED"))
+                {
+                    continue;
+                }
+                animal.performCare(CareAction.FEEDING);
+                animal.performCare(CareAction.CLEANING);
+                animal.performCare(CareAction.EXERCISE);
+                animal.performCare(CareAction.SOCIALIZATION);
+            }
+            System.out.println("Morning daily care completed for all animals.\n");
         }
 }

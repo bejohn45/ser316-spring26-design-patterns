@@ -54,9 +54,14 @@ public class ShelterSimulation
         for (cycle = 1; cycle <= totalCycles; cycle++) 
         {
             System.out.println("\n-------------------- Day " + cycle + " --------------------\n");
-            
+            // morning daily care
+            petShelter.performDailyCare();
+
             // generate random new animals (0-3) each cycle
-            petShelter.generateRandomAnimals();     
+            petShelter.generateRandomAnimals();
+
+            // evening daily care
+            petShelter.performDailyCare();
 
             // print summary
             dailySummary();
