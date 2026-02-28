@@ -53,7 +53,7 @@ public class ShelterSimulation
     {
         for (cycle = 1; cycle <= totalCycles; cycle++) 
         {
-            System.out.println("\n-------------------- Cycle " + cycle + " --------------------\n");
+            System.out.println("\n-------------------- Day " + cycle + " --------------------\n");
             
             // generate random new animals (0-3) each cycle
             petShelter.generateRandomAnimals();     

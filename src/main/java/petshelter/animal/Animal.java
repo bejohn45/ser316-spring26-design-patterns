@@ -59,8 +59,7 @@ public class Animal
         this.state = new IntakeState();
         this.careHistory = new ArrayList<>();
         this.medicalHistory = new ArrayList<>();
-        // do intake exam when animal added
-        this.state.performMedical(this, MedicalAction.INTAKE_EXAM);
+        // process intake
         this.processIntake();
     }
 

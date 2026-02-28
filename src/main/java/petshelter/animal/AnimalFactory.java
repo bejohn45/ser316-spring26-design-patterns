@@ -23,6 +23,7 @@ public class AnimalFactory
      */
     public void animalSetUp(AnimalManager animalManager)
     {
+        System.out.println("\n-------------------- Pet Shelter Setup --------------------\n");
         // create some animals and add to shelter
         animalManager.addAnimal(createAnimal(Species.DOG, 3, HealthStatus.HEALTHY, IntakeType.STRAY, Size.MEDIUM, Temperament.FRIENDLY));
         animalManager.addAnimal(createAnimal(Species.CAT, 2, HealthStatus.SICK, IntakeType.SURRENDER, Size.SMALL, Temperament.SHY));
