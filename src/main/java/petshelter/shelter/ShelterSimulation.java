@@ -25,8 +25,8 @@ import petshelter.action.MedicalAction;
 public class ShelterSimulation 
 {
     private PetShelter petShelter;
-    private int cycle;
-    private final int totalCycles;
+    private int cycle;                      // current cycle of simulation
+    private final int totalCycles;          // total cycles for simulation
 
     /**
      * Constructor for ShelterSimulation
@@ -51,8 +51,17 @@ public class ShelterSimulation
      */
     public void run() 
     {
-        System.out.println("\n -------------------- Cycle " + cycle + " --------------------\n");
-        
+        for (cycle = 1; cycle <= totalCycles; cycle++) 
+        {
+            System.out.println("\n-------------------- Cycle " + cycle + " --------------------\n");
+            
+            // generate random new animals (0-3) each cycle
+            petShelter.generateRandomAnimals();     
+
+            // print summary
+            dailySummary();
+            printAnimalsList();
+        }
     }
 
 
@@ -88,7 +97,7 @@ public class ShelterSimulation
             }
         }
         // print summary
-        System.out.println("---------- Animals Daily Summary ----------");
+        System.out.println("\n----- Animals Daily Summary -----");
         System.out.println("\n Intake: " + intake);
         System.out.println("\n Available: " + available);
         System.out.println("\n Pending: " + pending);
@@ -101,7 +110,7 @@ public class ShelterSimulation
     public void printAnimalsList()
     {
         List<Animal> animals = petShelter.getAnimalManager().getAnimals();
-        System.out.println("\n ---------- Animals List ----------");
+        System.out.println("\n ----- Animals List -----");
         for (Animal animal : animals)
         {
             System.out.println("\n ID: " + animal.getId() + " - " + animal.getIntakeType() + " - " + animal.getSpecies() + " - " + animal.getAge() + " - " + animal.getHealthStatus() + " - " + animal.getState());
