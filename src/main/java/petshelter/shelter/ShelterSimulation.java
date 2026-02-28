@@ -102,6 +102,7 @@ public class ShelterSimulation
         System.out.println("\n Available: " + available);
         System.out.println("\n Pending: " + pending);
         System.out.println("\n Adopted: " + adopted);
+        System.out.println("\n Total Animals: " + animals.size());
     }
 
     /**
