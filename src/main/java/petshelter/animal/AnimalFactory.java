@@ -30,4 +30,12 @@ public class AnimalFactory
         animalManager.addAnimal(createAnimal(Species.RABBIT, 1, HealthStatus.INJURED, IntakeType.STRAY, Size.SMALL, Temperament.ANXIOUS));
         System.out.println("Animal setup complete. Total animals in shelter: " + animalManager.getAnimals().size());
     }
+
+    /**
+     * Getter for last id
+     */
+    public int getLastId() 
+    {
+        return lastId;
+    }
 }

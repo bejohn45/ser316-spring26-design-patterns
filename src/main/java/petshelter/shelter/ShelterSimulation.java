@@ -60,6 +60,9 @@ public class ShelterSimulation
             // generate random new animals (0-3) each cycle
             petShelter.generateRandomAnimals();
 
+            // 1 vaccine a day for random animal
+            petShelter.performMedicalRandom();
+
             // evening daily care
             petShelter.performDailyCare();
 

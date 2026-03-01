@@ -10,6 +10,8 @@ import petshelter.animal.Size;
 import petshelter.animal.Temperament;
 import petshelter.animal.HealthStatus;
 import petshelter.action.CareAction;
+import petshelter.action.MedicalAction;
+import petshelter.adoption.Adopter;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -108,5 +110,31 @@ public class PetShelter
                 animal.performCare(CareAction.SOCIALIZATION);
             }
             System.out.println("Morning daily care completed for all animals.\n");
+        }
+
+        /**
+         * Perform vaccination for 1 random animal
+         */
+        public void performMedicalRandom()
+        {
+            List<Animal> animals = animalManager.getAnimals();
+            int r = random.nextInt(animalFactory.getLastId()) + 1;
+            MedicalAction medicalAction = MedicalAction.VACCINATION;
+
+            // do medical for each animal
+            for (Animal animal : animals)
+            {
+                // check if adopted
+                if (animal.getState().equals("ADOPTED"))
+                {
+                    continue;
+                }
+                // vaccination for random animal
+                if (r == animal.getId())
+                {
+                    animal.performMedical(medicalAction);
+                }
+            }
+             System.out.println("VACCINATION performed for animal with ID: " + r + ".\n");
         }
 }
