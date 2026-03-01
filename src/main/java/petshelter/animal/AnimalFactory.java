@@ -28,6 +28,8 @@ public class AnimalFactory
         animalManager.addAnimal(createAnimal(Species.DOG, 3, HealthStatus.HEALTHY, IntakeType.STRAY, Size.MEDIUM, Temperament.FRIENDLY));
         animalManager.addAnimal(createAnimal(Species.CAT, 2, HealthStatus.SICK, IntakeType.SURRENDER, Size.SMALL, Temperament.SHY));
         animalManager.addAnimal(createAnimal(Species.RABBIT, 1, HealthStatus.INJURED, IntakeType.STRAY, Size.SMALL, Temperament.ANXIOUS));
+        animalManager.addAnimal(createAnimal(Species.HAMSTER, 2, HealthStatus.HEALTHY, IntakeType.SURRENDER, Size.LARGE, Temperament.SHY));
+        animalManager.addAnimal(createAnimal(Species.DOG, 5, HealthStatus.HEALTHY, IntakeType.TRANSFER, Size.LARGE, Temperament.ENERGETIC));
         System.out.println("Animal setup complete. Total animals in shelter: " + animalManager.getAnimals().size());
     }
 

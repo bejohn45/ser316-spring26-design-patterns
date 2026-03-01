@@ -45,7 +45,8 @@ The Factory Pattern and State Pattern will work together like this:
 
 ## Screencast Link and Pattern Explanation
 
-- Link: 
+- Screencast Link: https://youtu.be/eK3z25Vf5Y0
+- Github link: https://github.com/bejohn45/ser316-spring26-design-patterns
 - Factory pattern makes the creation of animals in a consistent way. Having an AnimalFactory lets it create animals and assign it a unique id.
 - State pattern lets an object be allowed to do certain things based on it's current state. Each state is it's own class that allow the animal to move to another state with a specific action.
 
