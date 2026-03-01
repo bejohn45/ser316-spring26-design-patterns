@@ -1,0 +1,43 @@
+package petshelter.animal;
+
+// imports
+
+/**
+ * Factory for creating animals
+ */
+public class AnimalFactory 
+{
+    private static int lastId = 0;      // track of last assigned id
+
+    /**
+     * Create an animal instance
+     */
+    public static Animal createAnimal(Species species, int age, HealthStatus healthStatus, IntakeType intakeType, Size size,Temperament temperament) 
+    {
+        int id = ++lastId; 
+        return new Animal(id, species, age, healthStatus, intakeType, size, temperament);
+    }
+
+    /**
+     * Set up animals
+     */
+    public void animalSetUp(AnimalManager animalManager)
+    {
+        System.out.println("\n-------------------- Pet Shelter Setup --------------------\n");
+        // create some animals and add to shelter
+        animalManager.addAnimal(createAnimal(Species.DOG, 3, HealthStatus.HEALTHY, IntakeType.STRAY, Size.MEDIUM, Temperament.FRIENDLY));
+        animalManager.addAnimal(createAnimal(Species.CAT, 2, HealthStatus.SICK, IntakeType.SURRENDER, Size.SMALL, Temperament.SHY));
+        animalManager.addAnimal(createAnimal(Species.RABBIT, 1, HealthStatus.INJURED, IntakeType.STRAY, Size.SMALL, Temperament.ANXIOUS));
+        animalManager.addAnimal(createAnimal(Species.HAMSTER, 2, HealthStatus.HEALTHY, IntakeType.SURRENDER, Size.LARGE, Temperament.SHY));
+        animalManager.addAnimal(createAnimal(Species.DOG, 5, HealthStatus.HEALTHY, IntakeType.TRANSFER, Size.LARGE, Temperament.ENERGETIC));
+        System.out.println("Animal setup complete. Total animals in shelter: " + animalManager.getAnimals().size());
+    }
+
+    /**
+     * Getter for last id
+     */
+    public int getLastId() 
+    {
+        return lastId;
+    }
+}
